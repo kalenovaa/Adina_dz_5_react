@@ -7,7 +7,10 @@ let nextId = 3;
 const initialTodos = [
     {id: 0, title: 'купить молока', done: false},
     {id: 1, title: 'купить сыр', done: false},
-    {id: 2, title: 'купить мясо', done: false}
+    {id: 2, title: 'купить мясо', done: false},
+    {id: 2, title: 'купить дом', done: false},
+    {id: 2, title: 'купить комп', done: false},
+    {id: 2, title: 'докупить продукты', done: false},
 ]
 
 export default function TaskApp() {
