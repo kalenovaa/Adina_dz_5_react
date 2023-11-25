@@ -12,7 +12,7 @@ const initialTodos = [
 
 export default function TaskApp() {
     const [todos, setTodos] = useState(initialTodos)
-    const [txt,setTxt] = useState("")
+    const [filter,setFilter] = useState("")
     function handleAddTodo(title){
         setTodos([
             ...todos,
@@ -23,11 +23,16 @@ export default function TaskApp() {
             }
         ])
     }
-    function handleSearch() {
-        setTodos( todos.filter((t) => {
-            return t
-        }))
+    function handleSearch(e) {
+        const inputValue = e.target.value;
+        setFilter(inputValue);
+        setTodos((prevTodos) =>
+            initialTodos.filter((todo) =>
+                todo.title.toLowerCase().includes(inputValue.toLowerCase())
+            )
+        );
     }
+
     function handleChangeTodos(nextTodo){
         setTodos(todos.map(t =>{
             if (t.id === nextTodo.id) {
@@ -44,8 +49,7 @@ export default function TaskApp() {
     }
     return(
         <>
-            <input onChange={setTxt} type="text" placeholder="поиск" />
-            <button onClick={handleSearch}> click</button>
+            <input onChange={handleSearch} value={filter} type="text" placeholder="поиск" name="filter" id= "filter" />
             <AddTodo onAddTodo={handleAddTodo}/>
             <TaskList
                 todos={todos}
